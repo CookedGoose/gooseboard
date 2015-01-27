@@ -1,0 +1,39 @@
+<!DOCTYPE html> 
+<html>
+<head>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css"> 
+  <link rel="stylesheet" href="static/home.css">
+</head>
+<h1><center>Search</center></h1>
+<body>
+  {% if sess['username'] %}
+  Currently logged in as: <span id="loguser">{{sess['username']}}</span><br>
+  {% else %}
+  Not logged in.
+  {% endif %}
+  {% if post %}
+  {% if errorlist %}
+  an error occurred:<br>
+  <ul>
+  {% for error in errorlist %}
+  <li>{{error}}</li>
+  {% endfor %}
+  </ul>
+  {% else %}
+  successful
+  {% endif %}
+  {% endif %}
+Search for a board:
+<form class="pure-form" action="search" method="POST">
+<fieldset>
+    <input id="search" type="text" name="search" class="pure-input-1" type="text" placeholder="Input search term">
+<button type="submit">Submit</button><br>
+</fieldset>
+</form>
+<br>
+<ul>
+  {% for b in boards %}
+  <h2><li><a href="board/{{b['title']}}">{{b['title']}} - {% if b['owner'] %}{{b['owner']}}{% else %}Anonymous{% endif %}</a></li></h2>
+  {{b['body']}}
+  {% endfor %}
+</ul></html>
