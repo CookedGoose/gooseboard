@@ -29,9 +29,14 @@
     <input name="title" type="text" placeholder="Title"><br>
     <button type="submit">Create</button><br>
   </form>
+<div class="pure-menu pure-menu-open">
+<a class="pure-menu-heading">Boards</a>
+<ul>
   {% for b in boards %}
-  <h2><a href="board/{{b['title']}}">{{b['title']}}</a> - {% if b['owner'] %}{{b['owner']}}{% else %}Anonymous{% endif %}</h2>
+  <h2><li><a href="board/{{b['title']}}">{{b['title']}} - {% if b['owner'] %}{{b['owner']}}{% else %}Anonymous{% endif %}</a></li></h2>
   {{b['body']}}
   {% endfor %}
+</ul>
+</div>
 </body> 
 </html>
