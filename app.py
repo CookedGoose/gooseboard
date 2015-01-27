@@ -95,7 +95,7 @@ def home_html():
     boardlist = boarddb.find()
     for board in boardlist:
         if 'imgurl' in board:
-            listThumbs.append(board['imgurl'])
+            listThumbs.append( (board['imgurl'], board['owner'], board['title']) )
     if request.method=="POST":
         pass
     return render_template("home.html",
