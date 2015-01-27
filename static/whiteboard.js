@@ -109,13 +109,14 @@ function ajaxupdatechat() {
 }
 
 function ajaxsendstroke(stroke) {
+    dataURL = canvas.toDataURL();
     if(!stroke) {return;}
     if(stroke.path.length==0) {return;}
     $.ajax({
         type: "POST",
         contentType: "application/json",
         url: "/ajax/canvasstroke/"+boardname,
-        data: JSON.stringify({content: stroke, board: boardname}),
+        data: JSON.stringify({content: stroke, board: boardname, url: dataURL}),
         dataType: "json",
         success: function(r){
             debugout.innerHTML=JSON.stringify(r);

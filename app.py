@@ -68,7 +68,9 @@ def ajax_canvasstroke(board):
         curBoard["canvasstrokes"] = [newStroke]
     else:
         curBoard["canvasstrokes"].append(newStroke)
-        boarddb.save(curBoard)
+
+    curBoard["imgurl"] = dat["url"]
+    boarddb.save(curBoard)
     return "yolo"
 
 @app.route("/ajax/canvas/<board>/<last>",methods=['GET','POST'])
@@ -90,10 +92,15 @@ def ajax_canvasfix(board):
 @app.route("/")
 @app.route("/home",methods=['GET','POST'])
 def home_html():
+    listThumbs = []
+    boardlist = boarddb.find()
+    for board in boardlist:
+        if 'imgurl' in board:
+            listThumbs.append(board['imgurl'])
     if request.method=="POST":
         pass
     return render_template("home.html",
-                           sess=session)
+                           sess=session, thumbs=listThumbs[:6])
 
 
 @app.route("/todo")
