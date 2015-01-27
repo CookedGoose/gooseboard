@@ -70,6 +70,7 @@ def ajax_canvasstroke(board):
         curBoard["canvasstrokes"].append(newStroke)
 
     curBoard["imgurl"] = dat["url"]
+    curBoard["canvasimagetime"] = time.time()
     boarddb.save(curBoard)
     return "yolo"
 
@@ -96,11 +97,12 @@ def home_html():
     boardlist = boarddb.find()
     for board in boardlist:
         if 'imgurl' in board:
-            listThumbs.append( (board['imgurl'], board['owner'], board['title']) )
+            listThumbs.append( (board['imgurl'], board['owner'], board['title'], board['canvasimagetime']) )
+            sortedBoardList = sorted(listThumbs, key=lambda k:k[3], reverse=True)
     if request.method=="POST":
         pass
     return render_template("home.html",
-                           sess=session, thumbs=listThumbs[:6])
+                           sess=session, thumbs=sortedBoardList[:6])
 
 
 @app.route("/todo")
