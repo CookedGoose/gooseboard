@@ -67,7 +67,10 @@ def ajax_canvasstroke(board):
         curBoard["canvasstrokes"] = [newStroke]
     else:
         curBoard["canvasstrokes"].append(newStroke)
-        boarddb.save(curBoard)
+
+    curBoard["imgurl"] = dat["url"]
+    boarddb.save(curBoard)
+    print curBoard["imgurl"]
     return "yolo"
 
 @app.route("/ajax/canvas/<board>/<last>",methods=['GET','POST'])
