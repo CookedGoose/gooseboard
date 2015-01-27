@@ -45,7 +45,11 @@
     {% for thumb in thumbs %}
     <div class="pure-u-1-3 darken">
       <div class="thumbnail">
-	<p><img src="{{ thumb }}" class="imageToFit"></img></p>
+	<div class="overlay"></div>
+	<div id="wrapper">
+	  <p><img src="{{ thumb[0] }}" class="imageToFit"></img></p>
+	  <p class="text">{{ thumb[2] }} by {{ thumb[1] }}</p>
+	</div>
       </div>
     </div>
     {% endfor %}
@@ -53,15 +57,15 @@
     <!-- old stuff
 	 <div class="pure-u-1-3 darken">
 	   <div class="thumbnail">
-	     <p>Board here.</p>
-	   </div>
-	 </div>
+	<p>Board here.</p>
+      </div>
+    </div>
 
-	 <div class="pure-u-1-3 darken">
-	   <div class="thumbnail">
-	     <p>Board here.</p>
-	   </div>
-	 </div>
+    <div class="pure-u-1-3 darken">
+      <div class="thumbnail">
+	<p>Board here.</p>
+      </div>
+    </div>
   </div>
 
   <div class="pure-g" id="options">
@@ -85,8 +89,8 @@
     </div>
 
   </div>
-  -->
 
+-->
 
 
 
