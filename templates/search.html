@@ -30,10 +30,11 @@ Search for a board:
 <button type="submit">Submit</button><br>
 </fieldset>
 </form>
+  <a href = "/home">Return to home</a>
 <br>
 <ul>
   {% for b in boards %}
   <h2><li><a href="board/{{b['title']}}">{{b['title']}} - {% if b['owner'] %}{{b['owner']}}{% else %}Anonymous{% endif %}</a></li></h2>
   {{b['body']}}
   {% endfor %}
-</ul></html>
+</ul></body></html>
