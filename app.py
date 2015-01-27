@@ -213,6 +213,29 @@ def board_html(title):
                            sess=session,
                            board=boarddb.find_one({"title":title}))
 
+@app.route("/search",methods=['GET','POST'])
+def search_html():
+    errors = []
+    post = False
+    success = True
+    boardList = boarddb.find()
+    if request.method=="POST":
+        post = True
+       # searchTerm = "lml"
+        print request
+        searchTerm = request.form["search"]
+       # boardList = sorted(boardList,key=lambda k:k["id"] if "id" in k else 0,reverse = True)
+        boardList = [b for b in boardList if searchTerm in b["title"]]
+
+    return render_template("search.html",
+                           errorlist=errors,
+                           post=post,
+                           success=success,
+                           sess=session, boards=boardList
+)
+
+
+
 @app.route("/settings",methods=['GET','POST'])
 @requirelogin
 def settings_html():

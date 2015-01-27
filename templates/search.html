@@ -4,11 +4,10 @@
   <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css"> 
   <link rel="stylesheet" href="static/home.css">
 </head>
-  <h1>
-    <center>boards</center>
-  </h1>
+<h1><center>Search</center></h1>
+<body>
   {% if sess['username'] %}
-  Currently logged in as: {{sess['username']}}<br>
+  Currently logged in as: <span id="loguser">{{sess['username']}}</span><br>
   {% else %}
   Not logged in.
   {% endif %}
@@ -21,23 +20,21 @@
   {% endfor %}
   </ul>
   {% else %}
-  post successful<br>
+  successful
   {% endif %}
   {% endif %}
-  <form action="boards" method="POST">
-    Create new board:
-    <input name="title" type="text" placeholder="Title"><br>
-    <button type="submit">Create</button><br>
-  </form>
-<div class="pure-menu pure-menu-open">
-<a class="pure-menu-heading">Boards</a>
+Search for a board:
+<form class="pure-form" action="search" method="POST">
+<fieldset>
+    <input id="search" type="text" name="search" class="pure-input-1" type="text" placeholder="Input search term">
+<button type="submit">Submit</button><br>
+</fieldset>
+</form>
+  <a href = "/home">Return to home</a>
+<br>
 <ul>
   {% for b in boards %}
   <h2><li><a href="board/{{b['title']}}">{{b['title']}} - {% if b['owner'] %}{{b['owner']}}{% else %}Anonymous{% endif %}</a></li></h2>
   {{b['body']}}
   {% endfor %}
-</ul>
-</div>
-  <a href = "/home">Return to home</a>
-</body> 
-</html>
+</ul></body></html>
