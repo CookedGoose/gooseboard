@@ -95,6 +95,7 @@ def ajax_canvasfix(board):
 def home_html():
     listThumbs = []
     boardlist = boarddb.find()
+    sortedBoardList = []
     for board in boardlist:
         if 'imgurl' in board:
             listThumbs.append( (board['imgurl'], board['owner'], board['title'], board['canvasimagetime']) )
