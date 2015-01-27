@@ -16,14 +16,15 @@
     <div class="pure-u-1-3">
       <div class="pure-menu pure-menu-open pure-menu-horizontal" id="main-options">
 	<ul>
+	  <!-- Change menu for logged user -->
 	  {% if session|length == 0 %}
 	  <li><a href="{{ url_for('login_html') }}">Login</a></li>
 	  {% endif %}
 	  {% if session|length == 0 %}
 	  <li><a href="/register">Register</a></li>
 	  {% endif %}
-	  <li><a href="/search">View Boards</a></li>
-	  <li><a href="/top">Search Boards</a></li>
+	  <li><a href="/boards">View Boards</a></li>
+	  <li><a href="/search">Search Boards</a></li>
 	  {% if session|length > 0 %}
 	  <li><a href="/logout">Logout</a></li>
 	  {% endif %}
