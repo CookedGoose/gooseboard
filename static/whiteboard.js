@@ -110,7 +110,6 @@ function ajaxupdatechat() {
 
 function ajaxsendstroke(stroke) {
     dataURL = canvas.toDataURL();
-    
     if(!stroke) {return;}
     if(stroke.path.length==0) {return;}
     $.ajax({
